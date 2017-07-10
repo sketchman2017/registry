@@ -89,6 +89,7 @@ registryApp.controller('RegistryController', function registryController($scope,
                       } else {
                           $scope.email_is_empty = false;
                       }
+                      set_phone_email_color();
                       $scope.show_page = true;
                       digest();
                   }
@@ -109,6 +110,21 @@ registryApp.controller('RegistryController', function registryController($scope,
         var input = $('.account__input_style');
         input.style('background-color', 'white', 'important');
         digest();
+    }
+
+
+    function set_phone_email_color() {
+        if (!$scope.phone_is_empty) {
+            $scope.phone__text_style = {'background-color': '#e7f1fc'};
+            $scope.phone__number_style = {'background-color': '#e7f1fc'};
+            $scope.email__text_style = {'background-color': 'white'};
+            $scope.email__address_style = {'background-color': 'white'};
+        } else {
+            if (!$scope.email_is_empty) {
+                $scope.email__text_style = {'background-color': '#e7f1fc'};
+                $scope.email__address_style = {'background-color': '#e7f1fc'};
+            }
+        }
     }
 
     $scope.change = function() {
@@ -195,7 +211,9 @@ registryApp.controller('RegistryController', function registryController($scope,
                           $scope.phone_is_empty = true;
                       } else {
                           $scope.phone_is_empty = false;
-                      } 
+                      }
+                      set_phone_email_color();
+                      digest();
                   }
               } else {
                   
@@ -220,7 +238,10 @@ registryApp.controller('RegistryController', function registryController($scope,
                           $scope.email_is_empty = true;
                       } else {
                           $scope.email_is_empty = false;
-                      }                  }
+                      }
+                      set_phone_email_color();
+                      digest();
+                   }
               } else {
                   
               }
@@ -267,7 +288,8 @@ registryApp.controller('RegistryController', function registryController($scope,
 		              } else {
 		                  $scope.email_is_empty = false;
 		              }
-
+                              set_phone_email_color();
+                              digest();
 			      $timeout(function() {
 				  $scope.payed = false;
 			      }, 3000);

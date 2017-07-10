@@ -157,6 +157,7 @@
              color: #A2A7BC;
              margin-left: 70px;
              margin-bottom: 10px;
+             margin-top: 10px;
           }
  
           .counter_new__text {
@@ -191,6 +192,9 @@
               color: #4A80C1;
               text-align: right;
               margin-right: 50px;
+	      background-repeat: repeat-x;    
+	      height: 20px;
+              width: 90%;
           }
 
           .indebtedness__text {
@@ -291,8 +295,10 @@
           }
 
           .phone_input__text {
+              margin-top: 10px;
               margin-left: 70px;
               margin-right: 50px;
+              color: #A2A7BC;
           }
 
           .phone_input__value {
@@ -302,8 +308,10 @@
           }
 
           .email_input__text {
+              margin-top: 10px;
               margin-left: 70px;
               margin-right: 50px;
+              color: #A2A7BC;
           }
 
           .email_input__value {
@@ -347,37 +355,26 @@
 
           .message_style {
                 border: 1px solid #dc746e;
-		margin-left: 10%;
-		margin-right: 10%;
-		margin-bottom: 10px;
-		padding:15px 10px 15px 0px;
-		background-repeat: no-repeat;
-		background-position: 10px center;
-		color: #D8000C;
 		background-color: #f8ebeb;
 		border-radius: 10px;
-		width: 80%;
-		text-align: center;
+		color: #dc746e;
+                margin-left: 70px;
           }
 
            .message_style_ok {
-                border: 1px solid #61bae9;
-		margin-left: 10%;
-		margin-right: 10%;
-		margin-bottom: 10px;
-		padding:15px 10px 15px 0px;
-		background-repeat: no-repeat;
-		background-position: 10px center;
-		color: #4A80C1;
                 background-color: #e7f1fc;
+                border: 1px solid #61bae9;
 		border-radius: 10px;
-		width: 80%;
-		text-align: center;
-
+		color: #4A80C1;           
+                margin-left: 70px;
            }
 
            .message_style_text {
-
+		padding:15px 10px 15px 0px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+		width: 90%;
+		text-align: center;
            }
 
 	   .editor__phone_email_add {
@@ -578,6 +575,7 @@
               color: #4A80C1;              
               margin-right: 0px;
               text-align: center;
+              width: 100%;
           }
 
           .indebtedness__text {
@@ -724,35 +722,6 @@
               margin-right: 0px;
           }
 
-          .message_style {
-              border: 1px solid #dc746e;
-		margin-left: px;
-		margin-bottom: 10px;
-		padding:15px 10px 15px 0px;
-		background-repeat: no-repeat;
-		background-position: 10px center;
-		color: #D8000C;
-		background-color: #f8ebeb;
-		border-radius: 10px;
-		width: 80%;
-		text-align: center;
-          }
-
-           .message_style_ok {
-                border: 1px solid #61bae9;
-		margin-left: 143px;
-		margin-bottom: 10px;
-		padding:15px 10px 15px 0px;
-		background-repeat: no-repeat;
-		background-position: 10px center;
-		color: #4A80C1;
-                background-color: #e7f1fc;
-		border-radius: 10px;
-		width: 80%;
-		text-align: center;
-
-           }
-
 	   .editor__phone_email_add {
 	    border: 3px solid #DCE6EF; 
             position: related;
@@ -778,12 +747,11 @@
 	  padding: 0px 0px;
 	  border-radius: 25px;
 	  cursor: pointer;
-
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -3.0em;
+	    margin: 0;
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    margin-left: -3.0em;
 	   }
 
 	   input.editor__phone_email_add_email_value {
@@ -793,6 +761,18 @@
 	    width: 90%; 
 	    vertical-align: middle;
 	   }
+
+           .message_style_text {
+		width: 100%;
+           }
+
+          .message_style {
+                margin-left: 0px;
+          }
+
+           .message_style_ok {
+                margin-left: 0px;
+           }
 }
 
 @media screen and (max-width: 200px) {
@@ -856,6 +836,18 @@
 	}
 
         .sum__value {
+            width: 88%;
+        }
+
+        .phone_input__value {
+            width: 88%;
+        }
+
+        .email_input__value {
+            width: 88%;
+        }
+
+        .editor__phone_email_add {
             width: 88%;
         }
 }          
@@ -1108,41 +1100,41 @@
     	       </div>
            </div>
 
-           <div class="message message_style_ok" ng-show="payed">
+           <div class="message" ng-show="payed">
                <div class="container">
                    <div class="row">
    	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                           <div class="message_style_text">Оплата произведена успешно</div>
+                           <div class="message_style_text message_style_ok">Оплата произведена успешно</div>
                        </div>                           
                    </div>
     	       </div>
            </div>
 
-           <div class="message message_style" ng-show="error">
+           <div class="message" ng-show="error">
                <div class="container">
                    <div class="row">
    	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                           <div class="message_style_text">Произошла ошибка</div>
+                           <div class="message_style_text message_style">Произошла ошибка</div>
                        </div>                           
                    </div>
     	       </div>
            </div>
 
-           <div class="message message_style" ng-show="error_counter_new">
+           <div class="message" ng-show="error_counter_new">
                <div class="container">
                    <div class="row">
    	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                           <div class="message_style_text">Новые показания счетчика должны быть целым числом</div>
+                           <div class="message_style_text message_style">Новые показания счетчика должны быть целым числом</div>
                        </div>                           
                    </div>
     	       </div>
            </div>
 
-           <div class="message message_style" ng-show="error_payed">
+           <div class="message" ng-show="error_payed">
                <div class="container">
                    <div class="row">
    	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                           <div class="message_style_text">Сумма платежа должна быть числом</div>
+                           <div class="message_style_text message_style">Сумма платежа должна быть числом</div>
                        </div>                           
                    </div>
     	       </div>

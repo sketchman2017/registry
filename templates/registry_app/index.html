@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html ng-app="registryApp">
+   <head>
+      {% load staticfiles %}
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width" />
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+      <!-- Optional theme -->
+
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+      <script src="{% static 'bootstrap/js/jquery-3.2.1.min.js' %}"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+      <script src="{% static 'js/angular.min.js' %}"></script>
+      <script src="{% static 'js/app.js' %}"></script>
+
+      <title>Оплата газа</title>
+      <style>
+
+	.sample-show-hide {
+	  transition: all linear 0.5s;
+	}
+
+
+	   @font-face {
+	    font-family: Rubik-Regular;
+	    src: url(../static/fonts/Rubik-Regular.ttf);
+	   }
+	.editor__phone_email_add, input[type="text"] {
+	   border: 3px solid #DCE6EF;
+	   border-radius: 10px;
+	   -webkit-border-radius: 10px;
+	   -moz-border-radius: 10px;
+	   -khtml-border-radius: 10px;
+	   background: white !important;
+	   outline: none;
+	   height: 44px; 
+	   color: black; 
+	   font-size: 19px;
+	   border-collapse: separate;
+	}
+
+
+	.editor__phone_email_add:focus, input[type="text"]:focus {
+	  color: #000000;
+	  border: 3px solid #DCE6EF;
+	  box-shadow: 10 10 10px #DCE6EF;
+	}
+
+	.editor__phone_email_add {
+	    margin-left: 70px;
+	    margin-right: 100px;
+	}
+
+          html {
+	      height: 100%;
+	  }
+          body {
+              border: 4px solid #DCE6EF;
+              min-height: 100%;              
+	      overflow-y: scroll;
+	      overflow-x: hidden;
+              font-family: 'Rubik-Regular', sans-serif;      
+          }
+          .title {
+              min-height: 230px;
+          }
+          .title__gas {
+              margin-top: 90px;
+              margin-left: 55px;
+              color: #2B2C34;
+          }
+          .title__text_style {
+              margin-bottom: 90px;
+              margin-top: 100px;
+              font-size: 24px;
+          }
+          .account_style {
+             margin-top: 80px;
+          }
+          .account__input_style {
+             margin-left: 60px;
+             margin-right: 20px;             
+             border-color: #DCE6EF;
+             background:transparent;
+             width: 90%;
+          }
+          .account__label_style {
+             color: #A2A7BC;
+             margin-left: 60px;
+             margin-bottom: 10px;
+          }
+          .title_img_style {
+              margin-top: 25px;
+              margin-left: 52px;
+              max-height: 150px;
+          }
+          .account_label_style {
+              margin: 120px;
+          }          
+
+          .correct__text {
+              text-align: center;
+              margin-top: 30px;
+          }
+
+          .name_and_address__name_and_icon {
+              background: #e7f1fc;
+              padding-left: 30px;
+              padding-right: 30px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+              margin-left: 65px;
+          }
+
+          .name_and_address__address_and_icon {
+              background: #e7f1fc;
+              padding-left: 30px;
+              padding-right: 30px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+              margin-right: 50px;
+          }
+
+          .name_and_address__name {
+              color: #4A80C1;
+          }
+
+          .name_and_address__address {
+              color: #4A80C1;
+          }
+
+          .name_and_address_style {
+              margin-top: 40px;
+              margin-bottom: 10px;
+          }
+
+          .roomers_count_style {
+
+          }
+
+          .roomers_count_text {
+              margin-left: 123px;
+          }
+          
+          .sum__text {
+             color: #A2A7BC;
+             margin-left: 70px;
+             margin-bottom: 10px;
+          }
+ 
+          .counter_new__text {
+              text-align: center;
+              margin-top: 10px;
+          }
+
+          .roomers_count__text {
+              color: #2B2C34;
+              margin-left: 70px;
+          }
+          
+          .roomers_count__number {
+              color: #4A80C1;
+              margin-right: 50px;
+              text-align: right;
+              margin-right: 50px;
+          }
+
+          .period_style {
+          }
+
+          .period__text {
+              background-color: #e7f1fc;
+              color: #2B2C34;
+              margin-left: 70px;
+              background-color: 
+          }
+
+          .period__date {
+              background-color: #e7f1fc;
+              color: #4A80C1;
+              text-align: right;
+              margin-right: 50px;
+          }
+
+          .indebtedness__text {
+              color: #2B2C34;
+              margin-left: 70px;           
+          }
+
+          .indebtedness__sum {
+              color: #4A80C1;
+              text-align: right;
+              margin-right: 50px;
+          }
+
+          .phone__text {
+              color: #2B2C34;
+              margin-left: 70px;
+              background-color: #e7f1fc;
+          }
+
+          .phone__number {
+              color: #4A80C1;
+              text-align: right;
+              margin-right: 50px;
+              background-color: #e7f1fc;
+          }
+
+          .phone_style {
+          }
+
+          .email__text {
+              color: #2B2C34;
+              margin-left: 70px;
+          }
+
+          .email__address {
+              color: #4A80C1;
+              text-align: right;
+              margin-right: 50px;
+          }
+
+	.pencil {
+	    background-image: url("../static/img/pencil_icon.png");
+	    background-size: 20px 20px;
+	    content: "";
+	    display: inline-block;
+	    height: 17px;
+	    position: absolute;
+	    right: 37px;
+	    top: 0;
+	    width: 20px;
+	    z-index: 9;
+	}
+
+          .counter__text {
+              color: #2B2C34;
+              background-color: #e7f1fc;
+              margin-left: 70px;
+              text-align: center;
+              margin-top: 10px;
+              padding-top: 10px;
+          }
+ 
+          .counter__old_value {
+              text-align: center;
+              color: #4A80C1;
+              font-size: 25px;
+              padding-top: 10px;
+              margin-left: 70px;
+              background-color: #e7f1fc;
+              padding-bottom: 15px;
+          }
+
+          .counter_new__text {
+              padding-top: 10px;
+              color: #2B2C34;
+              background-color: #e7f1fc;
+              margin-right: 50px;
+          }
+
+          .counter_new__value {
+              text-align: center;
+              margin-top: 5px;
+              margin-bottom: 10px;
+          }
+
+          .counter_new__value_style {
+              background-color: #e7f1fc;
+              margin-right: 50px;
+              padding-bottom: 2px;
+          }
+
+          .counter_style {
+              text-align: center;
+          }
+
+          .sum_value { 
+              width: 90%;
+          }
+
+          .phone_input__text {
+              margin-left: 70px;
+              margin-right: 50px;
+          }
+
+          .phone_input__value {
+              width: 90%;
+              margin-left: 70px;
+              margin-right: 50px;
+          }
+
+          .email_input__text {
+              margin-left: 70px;
+              margin-right: 50px;
+          }
+
+          .email_input__value {
+              width: 90%;
+              margin-left: 70px;
+              margin-right: 50px;
+          }
+
+          .editor_email_style {
+              margin-top: 20px;
+              margin-bottom: 20px;
+          }
+
+          .editor_phone_style {
+              margin-top: 20px;
+              margin-bottom: 20px;
+          }
+
+          .pay_style {
+              text-align: center;
+              margin-bottom: 20px;
+              color: white;
+          }
+
+          .pay__button {
+              background-color: #4A80C1;
+              border-radius: 25px;
+              width: 150px;
+              height: 40px;
+              border: none;
+              outline: none;
+              margin-top: 40px;
+          }
+ 
+          .sum__value {
+              width: 90%;
+              margin-bottom: 10px;
+              margin-left: 70px;
+              margin-right: 50px;
+          }
+
+          .message_style {
+                border: 1px solid #dc746e;
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-bottom: 10px;
+		padding:15px 10px 15px 0px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+		color: #D8000C;
+		background-color: #f8ebeb;
+		border-radius: 10px;
+		width: 80%;
+		text-align: center;
+          }
+
+           .message_style_ok {
+                border: 1px solid #61bae9;
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-bottom: 10px;
+		padding:15px 10px 15px 0px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+		color: #4A80C1;
+                background-color: #e7f1fc;
+		border-radius: 10px;
+		width: 80%;
+		text-align: center;
+
+           }
+
+           .message_style_text {
+
+           }
+
+	   .editor__phone_email_add {
+	    border: 3px solid #DCE6EF; 
+	    width: 90%;
+	   }
+	   input.editor__phone_email_add_phone_value {
+	    border: none; 
+	    outline: none;
+	    -webkit-appearance: none; 
+	    width: 90%; 
+	    vertical-align: middle;
+	   }
+	   input.editor__phone_email_add_submit[type="submit"] {
+	    width: 15%; 
+	    height: 30px; 
+	    border: none; 
+	    background: #e7f1fc;
+	  position: absolute; top: 7px; right: 70px;
+	  z-index: 9;
+	  outline: none;
+	  border: none;
+	  display: inline-block;
+	  background: #DCE6EF;
+	  color: #2B2C34;
+	  padding: 0px 0px;
+	  border-radius: 25px;
+	  cursor: pointer;
+
+	   }
+
+	   input.editor__phone_email_add_email_value {
+	    border: none; 
+	    outline: none;
+	    -webkit-appearance: none; 
+	    width: 90%; 
+	    vertical-align: middle;
+	   }
+
+@media screen and (max-width: 1024px) {
+
+	.editor__phone_email_add, input[type="text"] {
+	   border: 3px solid #DCE6EF;
+	   border-radius: 10px;
+	   -webkit-border-radius: 10px;
+	   -moz-border-radius: 10px;
+	   -khtml-border-radius: 10px;
+	   background: white !important;
+	   outline: none;
+	   height: 44px;
+	   color: black; 
+	   font-size: 19px;
+	   border-collapse: separate;
+	}
+
+
+	.editor__phone_email_add:focus, input[type="text"]:focus {
+	  color: #000000;
+	  border: 3px solid #DCE6EF;
+	  box-shadow: 10 10 10px #DCE6EF;
+	}
+
+	.editor__phone_email_add {
+	    margin-left: 0px;
+	    margin-right: 0px;
+	    height: 74px;
+	}
+
+          html {
+	      height: 100%;
+	  }
+          body {
+              border: 4px solid #DCE6EF;
+              min-height: 100%;              
+		overflow-y: scroll;
+		overflow-x: hidden;
+               text-align: center;
+          }
+          .title {
+              min-height: 230px;
+          }
+          .title__gas {
+              margin-top: 90px;
+              margin-left: 0px;
+              color: #2B2C34;
+          }
+          .title__text_style {
+              margin-top: 40px;
+              margin-bottom: 40px;
+              font-size: 13px;
+          }
+          .account_style {
+             margin-top: 30px;
+             margin-left: 0px;
+             margin-right: 0px;
+             width: 100%;
+          }
+          .account__input_style {
+             margin-left: 0px;
+             margin-right: 0px;             
+             border-color: #DCE6EF;
+             background:transparent;
+             width: 100%;
+          }
+          .account__label_style {
+             color: #A2A7BC;
+             margin-left: 0px;
+             margin-bottom: 10px;
+          }
+          .title_img_style {
+              margin-top: 25px;
+              margin-left: 0px;
+              max-height: 100px;
+          }
+          .account_label_style {
+              margin: 120px;
+          }          
+
+          .correct__text {
+              text-align: center;
+              margin-top: 30px;
+          }
+
+          .name_and_address__name_and_icon {
+              background: #e7f1fc;
+              padding-left: 30px;
+              padding-right: 30px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+              margin-left: 0px;
+          }
+
+          .name_and_address__address_and_icon {
+              background: #e7f1fc;
+              padding-left: 30px;
+              padding-right: 30px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+              margin-right: 0px;
+          }
+
+          .name_and_address__name {
+              color: #4A80C1;
+          }
+
+          .name_and_address__address {
+              color: #4A80C1;
+          }
+
+          .name_and_address_style {
+              margin-top: 40px;
+              margin-bottom: 10px;
+          }
+
+          .roomers_count_style {
+
+          }
+
+          .roomers_count_text {
+              margin-left: px;
+          }
+          
+          .sum__text {
+             color: #A2A7BC;
+             margin-left: 0px;
+             margin-bottom: 10px;
+          }
+ 
+          .counter_new__text {
+              text-align: center;
+              margin-top: 10px;
+          }
+
+          .roomers_count__text {
+              color: #2B2C34;
+              margin-left: 0px;
+          }
+          
+          .roomers_count__number {
+              color: #4A80C1;
+              margin-right: 50px;
+              margin-right: 0px;
+              text-align: center;
+          }
+
+          .period_style {
+          }
+
+          .period__text {
+              background-color: #e7f1fc;
+              color: #2B2C34;
+              margin-left: 0px;
+              background-color: 
+          }
+
+          .period__date {
+              background-color: #e7f1fc;
+              color: #4A80C1;              
+              margin-right: 0px;
+              text-align: center;
+          }
+
+          .indebtedness__text {
+              color: #2B2C34;
+              margin-left: 0px;           
+          }
+
+          .indebtedness__sum {
+              color: #4A80C1;
+              margin-right: 0px;
+              text-align: center;
+          }
+
+          .phone__text {
+              color: #2B2C34;
+              margin-left: 0px;
+              background-color: #e7f1fc;
+          }
+
+          .phone__number {
+              color: #4A80C1;              
+              margin-right: 0px;
+              background-color: #e7f1fc;
+              text-align: center;
+          }
+
+          .phone_style {
+          }
+
+          .email__text {
+              color: #2B2C34;
+              margin-left: 0px;
+          }
+
+          .email__address {
+              color: #4A80C1;
+              margin-right: 0px;
+              text-align: center;
+          }
+
+	.pencil {
+	    background-image: url("../static/img/pencil_icon.png");
+	    background-size: 20px 20px;
+	    content: "";
+	    display: inline-block;
+	    height: 17px;
+	    position: absolute;
+	    right: -3px;
+	    top: 0;
+	    width: 20px;
+	    z-index: 9;
+	}
+
+          .counter__text {
+              color: #2B2C34;
+              background-color: #e7f1fc;
+              margin-left: 0px;
+              text-align: center;
+              margin-top: 10px;
+              padding-top: 10px;
+          }
+ 
+          .counter__old_value {
+              text-align: center;
+              color: #4A80C1;
+              font-size: 25px;
+              padding-top: 10px;
+              margin-left: 0px;
+              background-color: #e7f1fc;
+              padding-bottom: 15px;
+          }
+
+          .counter_new__text {
+              padding-top: 10px;
+              color: #2B2C34;
+              background-color: #e7f1fc;
+              margin-right: 0px;
+          }
+
+          .counter_new__value {
+              text-align: center;
+              margin-top: 5px;
+              margin-bottom: 10px;
+              width: 90%;
+          }
+
+          .counter_new__value_style {
+              background-color: #e7f1fc;
+              margin-right: 0px;
+              padding-bottom: 2px;
+          }
+
+          .counter_style {
+              text-align: center;
+          }
+
+          .sum_value { 
+              width: 90%;
+              margin-right: 0px;
+          }
+
+          .editor_email_style {
+              margin-top: 20px;
+              margin-bottom: 20px;
+          }
+
+          .editor_phone_style {
+              margin-top: 20px;
+              margin-bottom: 20px;
+          }
+
+          .pay_style {
+              text-align: center;
+              margin-bottom: 20px;
+              color: white;
+          }
+
+          .pay__button {
+              background-color: #4A80C1;
+              border-radius: 25px;
+              width: 150px;
+              height: 40px;
+              border: none;
+              outline: none;
+              margin-top: 40px;
+          }
+ 
+          .sum__value {
+              width: 100%;
+              margin-bottom: 10px;
+              margin-left: 0px;
+              margin-right: 0px;
+          }
+
+          .phone_input__value {
+              width: 100%;
+              margin-left: 0px;
+              margin-right: 0px;
+          }
+
+          .email_input__value {
+              width: 100%;
+              margin-left: 0px;
+              margin-right: 0px;
+          }
+
+          .message_style {
+              border: 1px solid #dc746e;
+		margin-left: px;
+		margin-bottom: 10px;
+		padding:15px 10px 15px 0px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+		color: #D8000C;
+		background-color: #f8ebeb;
+		border-radius: 10px;
+		width: 80%;
+		text-align: center;
+          }
+
+           .message_style_ok {
+                border: 1px solid #61bae9;
+		margin-left: 143px;
+		margin-bottom: 10px;
+		padding:15px 10px 15px 0px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+		color: #4A80C1;
+                background-color: #e7f1fc;
+		border-radius: 10px;
+		width: 80%;
+		text-align: center;
+
+           }
+
+	   .editor__phone_email_add {
+	    border: 3px solid #DCE6EF; 
+            position: related;
+	    width: 100%;            
+	   }
+	   input.editor__phone_email_add_phone_value {
+	    border: none; 
+	    outline: none;
+	    -webkit-appearance: none; 
+	    width: 90%; 
+	    vertical-align: middle;
+	   }
+	   input.editor__phone_email_add_submit[type="submit"] {
+	    width: 120px;
+	    height: 30px; 
+	    border: none;
+	    background: #e7f1fc;
+	  z-index: 9;
+	  outline: none;
+	  border: none;
+	  background: #DCE6EF;
+	  color: #2B2C34;
+	  padding: 0px 0px;
+	  border-radius: 25px;
+	  cursor: pointer;
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -4em;
+	   }
+
+	   input.editor__phone_email_add_email_value {
+	    border: none; 
+	    outline: none;
+	    -webkit-appearance: none; 
+	    width: 90%; 
+	    vertical-align: middle;
+	   }
+}
+          
+      </style> 
+   </head>
+   <body ng-controller="RegistryController">
+       <div class="title sample-show-hide" ng-style="title_style">
+           <div class="container">
+               <div class="row">
+  	           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                       <h1 class="title__gas" ng-style="title__gas_style" ng-model="ng_title__gas" ng-show="!account_inputed">Оплата газа</h1>
+                   </div>                   
+               </div>
+               <div class="row">
+                   <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12">
+                       <img ng-src="/static/img/{$logo_hash$}" ng-model="ng_title__image" ng-show="account_inputed" class="title_img_style">
+                   </div>
+                   <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+                       <div ng-show="account_inputed" ng-model="ng_title__text" class="title__text_style" ng-style="title__text_style">
+                           Межрегионгаз&nbsp{$town$}
+                       </div>
+                   </div>                                      
+               </div>
+	   </div>
+       </div>
+
+       <div class="account account_style">
+           <div class="container">
+               <div class="row">
+   	           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                       <div class="account__label account__label_style" ng-style="account__label_style">Введите номер лицевого счета</div>
+                   </div>
+	           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                       <div ng-style="account__input_container">
+                           <input type="text" ng-change="change()" maxlength="10" type="text" placeholder="_ _ _ _ _ _ _ _ _ _" size="35" class="account__input account__input_style" ng-model="ng_account__input" ng-style="account__input_style">
+                       </div>
+                   </div>
+    	       </div>
+    	   </div>
+       </div>
+
+       <div ng-show="show_not_found">
+           <div class="not_found not_found_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="correct__text" ng-style="correct__text_style">
+                               НЕ НАЙДЕНО
+                           </div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>           
+       </div>
+
+       <div ng-show="show_page">
+           <div class="name_and_address name_and_address_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                       <div class="name_and_address__name_and_icon">
+                           <img style="max-height:40px;" src="{% static 'img/user_icon.png' %}">
+                           <span class="name_and_address__name" ng-style="name_and_address__name_style">{$user.name$}</span>
+                       </div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                       <div class="name_and_address__address_and_icon">
+                           <img style="max-height:40px;" src="{% static 'img/address_icon.png' %}">
+                           <span class="name_and_address__address" ng-style="name_and_address__address_style">{$user.town$}&nbsp<span">{$user.address$}</span></span>
+                       </div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="roomers_count roomers_count_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="roomers_count__text" ng-style="roomers_count__text_style">Кол-во проживающих</div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="roomers_count__number" ng-style="roomers_count__number_style">{$user.roomers_count$}</div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="period period_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="period__text" ng-style="period__text_style">Период оплаты</div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="period__date" ng-style="period__date_style">{$user.period$}</div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="indebtedness indebtedness_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="indebtedness__text" ng-style="indebtedness__text_style">
+                               Задолженность на начало месяца (+ задолженность / - переплата)
+                           </div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="indebtedness__sum" ng-style="indebtedness__sum_style">{$user.indebtedness$}</div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="phone phone_style" ng-show="!phone_is_empty && user.phone!=='' && !edit_phone">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="phone__text" ng-style="phone__text_style">
+                               Номер телефона
+                           </div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="phone__number" ng-style="phone__number_style">{$user.phone$}</div>
+                           <img class="pencil" style="max-height: 20px;" src="/static/img/pencil_icon.png" ng-click="edit_phone=true">
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="editor_phone editor_phone_style" ng-show="edit_phone">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="editor__phone_email_add">
+                                <input maxlength="30" class="editor__phone_email_add_phone_value" ng-style="editor_phone__value_style" ng-model="user.phone"></input>
+                                <input type="submit" class="editor__phone_email_add_submit" ng-style="editor_phone__submit_style" ng-click="save_phone()" value="СОХРАНИТЬ"></input>
+                            </div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="email email_style" ng-show="!email_is_empty && !edit_email">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="email__text" ng-style="email__text_style">
+                               Электронная почта
+                           </div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="email__address" ng-style="email__address_style" ng-model="user.email">{$user.email$}<div class="email__address_image"></div></div>
+                           <img class="pencil" style="max-height: 20px;" src="/static/img/pencil_icon.png" ng-click="edit_email=true">
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="editor_email editor_email_style" ng-show="edit_email">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="editor__phone_email_add">
+                                <input maxlength="30" class="editor__phone_email_add_email_value" ng-style="editor_email__value_style" ng-model="user.email"></input>
+                                <input type="submit" class="editor__phone_email_add_submit" ng-style="editor_email__submit_style" ng-click="save_email()" value="СОХРАНИТЬ"></input>
+                            </div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="counter counter_style" ng-show="user.is_counter=='1'">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="counter__text" ng-style="counter__text_style">
+                               Предыдущие показания счетчика
+                           </div>
+                           <div class="counter__old_value" ng-style="counter__old_value_style">
+                               {$user.counter$}
+                           </div>
+                       </div>
+   	               <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                           <div class="counter_new__text" ng-style="counter_new__text_style">Передать новые показания счетчика</div>
+                           <div class="counter_new__value_style">
+                           <input type="text" class="counter_new__value" ng-style="counter_new__value_style" ng-model="counter_new" placeholder="******"></input>
+                           </div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="correct correct_style" ng-show="user.is_counter=='1'">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="correct__text" ng-style="correct__text_style">
+                               Если предыдущие показания счетчика некорректные позвоните по номеру 8 (800) 100 09 04 для корректировки
+                           </div>
+                       </div>
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="phone_input phone_input_style" ng-show="phone_is_empty">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="phone_input__text" ng-style="phone_input__text_style">
+                               Номер телефона
+                           </div>
+                       </div>
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <input type="text" class="phone_input__value" ng-style="phone_input__value_style" ng-model="user.phone" placeholder="Введите номер телефона"></input>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="email_input email_input_style" ng-show="email_is_empty">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="email_input__text" ng-style="email_input__text_style">
+                               Электронная почта
+                           </div>
+                       </div>
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <input type="text" type="email" class="email_input__value" ng-style="email_input__value_style" ng-model="user.email" placeholder="Введите электронную почту"></input>
+                       </div>                  
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="sum sum_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="sum__text" ng-style="sum__text_style">
+                               Сумма платежа
+                           </div>
+                       </div>
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <input type="text" class="sum__value" ng-style="sum__value_style" ng-model="user.balance_new"></input>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="message message_style_ok" ng-show="payed">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="message_style_text">Оплата произведена успешно</div>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="message message_style" ng-show="error">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="message_style_text">Произошла ошибка</div>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="message message_style" ng-show="error_counter_new">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="message_style_text">Новые показания счетчика должны быть целым числом</div>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="message message_style" ng-show="error_payed">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <div class="message_style_text">Сумма платежа должна быть числом</div>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>
+
+           <div class="pay pay_style">
+               <div class="container">
+                   <div class="row">
+   	               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                           <input type="button" ng-click="pay()" value="ОПЛАТА" class="pay__button" ng-style="pay__button_style"></input>
+                       </div>                           
+                   </div>
+    	       </div>
+           </div>       
+       </div>
+   </body>
+</html>

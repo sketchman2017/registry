@@ -119,6 +119,7 @@
               padding-top: 20px;
               padding-bottom: 20px;
               margin-left: 65px;
+              word-wrap: break-word;
           }
 
           .name_and_address__address_and_icon {
@@ -128,6 +129,7 @@
               padding-top: 20px;
               padding-bottom: 20px;
               margin-right: 50px;
+              word-wrap: break-word;
           }
 
           .name_and_address__name {
@@ -781,7 +783,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -4em;
+    margin-left: -3.0em;
 	   }
 
 	   input.editor__phone_email_add_email_value {
@@ -792,7 +794,71 @@
 	    vertical-align: middle;
 	   }
 }
-          
+
+@media screen and (max-width: 200px) {
+	input.editor__phone_email_add_submit[type="submit"] {
+	font-size: 13px;
+	text-transform: lowercase;
+        width: 80px;
+	}
+
+	.name_and_address__name {
+	font-size: 12px;
+	}
+
+	.name_and_address__address {
+	font-size: 12px;
+	}
+
+	.title_img_style {
+	margin-top: 10px;
+	max-height: 50px;
+	}
+
+	.title__text_style {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 9px;
+	}
+
+	.pay__button {
+	width: 100px;
+	text-transform: lowercase;
+	}
+
+	.name_and_address__name_and_icon {
+	    padding-left: 0px;
+	    padding-right: 0px; 
+	    margin-left: 0px;
+	}
+
+	.name_and_address__address_and_icon {
+	    padding-left: 0px;
+	    padding-right: 0px; 
+	    margin-left: 0px;
+	}
+
+	.title {
+             min-height: 140px;
+	}
+
+          .title__gas {
+              margin-top: 40px;
+              margin-left: 0px;
+              color: #2B2C34;
+              font-size: 20px;
+          }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1199px) {
+	.account__input_style {
+            width: 88%;
+	}
+
+        .sum__value {
+            width: 88%;
+        }
+}          
       </style> 
    </head>
    <body ng-controller="RegistryController">
